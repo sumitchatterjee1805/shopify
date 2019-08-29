@@ -18,7 +18,7 @@
                     <li class="orders__products-item"><%= p.title %> (<%= p.quantity %>) - Rs.<%= p.price*p.quantity %></li>
                                 <% }); %>
                 </ul>
-                <h1>Total Tax: Rs.<%= order.data.total_tax %> &nbsp;&nbsp;&nbsp;&nbsp; Total Bill: Rs.<%= order.data.total_price %></h1>
+                <h1>Shipping Charge: Rs.<%= order.data.shipping_price %> &nbsp;&nbsp;&nbsp;&nbsp; Total Tax: Rs.<%= order.data.total_tax %> &nbsp;&nbsp;&nbsp;&nbsp; Total Bill: Rs.<%= order.data.total_price %></h1>
             </li>
             <% }); %>
         </ul>

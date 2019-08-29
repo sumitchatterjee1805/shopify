@@ -16,13 +16,19 @@ exports.postOrder = async (req, res, next) => {
 exports.getOrders = (req, res, next) => {
     Order.find({}, { data: 1, _id: 0 })
         .then(orders => {
+            orders.forEach(order => {
+                order.data.shipping_price = 0;
+                order.data.shipping_lines.forEach(e => {
+                    order.data.shipping_price += parseInt(e.price);
+                });
+            });
             res.render('shop/orders', {
                 path: '/orders',
                 pageTitle: 'Your Orders',
                 orders: orders
             });
         })
-        .catch(err => res.status(500).send('Something went wrong'));
+        .catch(err => res.status(500).send(err));
 };
 
 exports.postUser = (req, res, next) => {
