@@ -9,7 +9,7 @@ exports.postOrder = async (req, res, next) => {
         res.send(req.body);
     }
     catch (err) {
-        res.send(err);
+        res.status(500).send(err);
     }
 }
 
@@ -22,7 +22,7 @@ exports.getOrders = (req, res, next) => {
                 orders: orders
             });
         })
-        .catch(err => console.log(err));
+        .catch(err => res.status(500).send('Something went wrong'));
 };
 
 exports.postUser = (req, res, next) => {
@@ -32,7 +32,7 @@ exports.postUser = (req, res, next) => {
     Order.findOne({ "data.id": orderId })
         .then(order => {
             if (!order) {
-                return res.send('Error');
+                return res.status(500).send('Error');
             }
             order.data.email = email;
             order.data.phone = phone;
@@ -43,7 +43,7 @@ exports.postUser = (req, res, next) => {
             res.redirect('/order');
         })
         .catch(err => {
-            console.log(err);
+            res.status(500).send('Something went wrong')
         })
 };
 
@@ -61,5 +61,5 @@ exports.getUser = (req, res, next) => {
                 order: order.data
             });
         })
-        .catch(err => console.log(err));
+        .catch(err => res.status(500).send('Something went wrong'));
 };

@@ -12,12 +12,13 @@
             <% orders.forEach(order => { %>
             <li class="orders__item">
                     <a href="/user/<%= order.data.id %>" class="btn">Edit</a>
-                <h1>Order - # <%= order.data.id %> &nbsp;&nbsp;&nbsp;&nbsp; Total Bill: Rs.<%= order.data.total_price %> &nbsp;&nbsp;&nbsp;&nbsp; <%= order.data.email %> &nbsp;&nbsp;&nbsp;&nbsp; <%= order.data.phone %></h1>
+                <h1>Order - # <%= order.data.id %> &nbsp;&nbsp;&nbsp;&nbsp; <%= order.data.email %> &nbsp;&nbsp;&nbsp;&nbsp; <%= order.data.phone %></h1>
                 <ul class="orders__products">
                     <% order.data.line_items.forEach(p => { %>
                     <li class="orders__products-item"><%= p.title %> (<%= p.quantity %>) - Rs.<%= p.price*p.quantity %></li>
                                 <% }); %>
                 </ul>
+                <h1>Total Tax: Rs.<%= order.data.total_tax %> &nbsp;&nbsp;&nbsp;&nbsp; Total Bill: Rs.<%= order.data.total_price %></h1>
             </li>
             <% }); %>
         </ul>

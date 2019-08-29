@@ -22,7 +22,7 @@ app.use('/order', orderRoutes);
 app.use('/user', userRoutes);
 
 app.use((req, res, next) => {
-    res.send('Not found');
+    res.status(404).send('Not found');
 })
 
 mongoose
